@@ -1,2 +1,2 @@
-# -my-first-website
+# my-first-website
 "My first cloud-hosted website"
