@@ -34,7 +34,332 @@ html
         <td>[SIEM, networking incident response]</td>
     </tr>
 </table> 
-  <body>
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TCP/IP Troubleshooting Cheat Sheet</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f2f5f9;
+            color: #263238;
+        }
+
+        header {
+            background-color: #17365d;
+            color: white;
+            padding: 25px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        section {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px #00000012;
+        }
+
+        h2 {
+            color: #17365d;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #ccd5df;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background-color: #e4edf7;
+        }
+
+        code {
+            background-color: #edf0f4;
+            padding: 3px 5px;
+            border-radius: 4px;
+        }
+
+        a {
+            color: #0759a5;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (max-width: 650px) {
+            body {
+                padding: 10px;
+            }
+
+            section {
+                padding: 12px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            th, td {
+                padding: 6px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>TCP/IP Troubleshooting: My Network Engineer Cheat Sheet</h1>
+    <p>CC6004 Network and Cloud Security - Week 4</p>
+</header>
+
+<main>
+
+    <section>
+        <h2>1. Introduction</h2>
+        <p>
+            TCP/IP is a collection of networking protocols that allows
+            computers and other devices to communicate across networks
+            and the internet. Understanding TCP/IP helps network engineers
+            identify connection problems, investigate network traffic and
+            improve security.
+        </p>
+
+        <h3>The Four TCP/IP Layers</h3>
+        <table>
+            <tr>
+                <th>Layer</th>
+                <th>Purpose</th>
+                <th>Examples</th>
+            </tr>
+            <tr>
+                <td>Application</td>
+                <td>Provides network services to applications.</td>
+                <td>HTTP, DNS, DHCP, SNMP</td>
+            </tr>
+            <tr>
+                <td>Transport</td>
+                <td>Transfers data between applications.</td>
+                <td>TCP, UDP</td>
+            </tr>
+            <tr>
+                <td>Internet</td>
+                <td>Addresses and routes packets between networks.</td>
+                <td>IPv4, IPv6, ICMP</td>
+            </tr>
+            <tr>
+                <td>Network Access</td>
+                <td>Moves data over the local network connection.</td>
+                <td>Ethernet, Wi-Fi</td>
+            </tr>
+        </table>
+        <p>
+            The OSI model has seven layers and is a reference framework
+            for understanding how network communication works.
+        </p>
+    </section>
+
+    <section>
+        <h2>2. Network Command Cheat Sheet</h2>
+        <table>
+            <tr>
+                <th>Command</th>
+                <th>Purpose</th>
+                <th>Safe example</th>
+                <th>What to look for</th>
+                <th>Limitation</th>
+            </tr>
+            <tr>
+                <td><code>ipconfig</code></td>
+                <td>Displays Windows IP configuration.</td>
+                <td><code>ipconfig</code></td>
+                <td>IP address, subnet mask and default gateway.</td>
+                <td>Does not prove internet connectivity.</td>
+            </tr>
+            <tr>
+                <td><code>ping</code></td>
+                <td>Tests whether a destination responds.</td>
+                <td><code>ping example.com</code></td>
+                <td>Replies, packet loss and response time.</td>
+                <td>Some systems block ping, even when services work.</td>
+            </tr>
+            <tr>
+                <td><code>netstat -an</code></td>
+                <td>Shows network connections and listening ports.</td>
+                <td><code>netstat -an</code></td>
+                <td>Listening ports and connection states.</td>
+                <td>Does not identify every security vulnerability.</td>
+            </tr>
+            <tr>
+                <td><code>tracert</code></td>
+                <td>Shows the route towards a destination on Windows.</td>
+                <td><code>tracert example.com</code></td>
+                <td>Network hops and where responses stop.</td>
+                <td>Routers may not respond to tracing probes.</td>
+            </tr>
+            <tr>
+                <td><code>nslookup</code></td>
+                <td>Checks DNS name resolution.</td>
+                <td><code>nslookup example.com</code></td>
+                <td>Whether a name resolves to an IP address.</td>
+                <td>One lookup does not test the whole website.</td>
+            </tr>
+        </table>
+
+        <p>
+            On Linux, alternatives include <code>ip</code>,
+            <code>ss</code> and <code>traceroute</code>.
+            Commands and output can differ between operating systems.
+        </p>
+    </section>
+
+    <section>
+        <h2>3. Cloud Tools I Explored</h2>
+        <ul>
+            <li>
+                <a href="https://dns.google/resolve?name=example.com%26type=A"
+                   target="_blank" rel="noopener noreferrer">
+                    Google Public DNS lookup
+                </a>
+                — investigates DNS records for domain names.
+            </li>
+            <li>
+                <a href="https://devtoollab.com/tools/pcap-viewer"
+                   target="_blank" rel="noopener noreferrer">
+                    Online PCAP Viewer
+                </a>
+                — helps inspect packet captures and network headers.
+                Only use public sample captures or files you are authorised
+                to inspect.
+            </li>
+            <li>
+                <a href="https://ipinfo.io/what-is-my-ip"
+                   target="_blank" rel="noopener noreferrer">
+                    IP Information
+                </a>
+                — shows information about the public IP address used
+                for an internet connection. Do not publish your actual IP.
+            </li>
+        </ul>
+        <p>
+            These tools help investigate DNS, IP addressing and packet
+            information. Results should be interpreted alongside other
+            evidence rather than treated as proof of a complete diagnosis.
+        </p>
+    </section>
+
+    <section>
+        <h2>4. My Five-Step Troubleshooting Process</h2>
+        <ol>
+            <li>
+                <strong>Check IP configuration:</strong>
+                Confirm that the device has an appropriate IP address,
+                subnet mask and default gateway.
+            </li>
+            <li>
+                <strong>Check DNS:</strong>
+                Use <code>nslookup</code> to see whether the domain name
+                resolves correctly.
+            </li>
+            <li>
+                <strong>Test connectivity:</strong>
+                Use <code>ping</code> where appropriate. Remember that
+                blocked ping responses do not always mean a network is down.
+            </li>
+            <li>
+                <strong>Check the service:</strong>
+                Confirm that the website uses HTTPS and investigate
+                service or port availability using authorised methods.
+            </li>
+            <li>
+                <strong>Record and review:</strong>
+                Document the symptoms, commands, results and actions taken.
+                If unresolved, escalate with the evidence collected.
+            </li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>5. My Learning Reflection</h2>
+        <p>
+            During Week 4, I learned about the TCP/IP model and how its
+            four layers support communication between devices. I learned
+            that DNS translates domain names into IP addresses, while TCP
+            provides reliable, connection-oriented data delivery. I also
+            explored the difference between IPv4 and IPv6, private and
+            public IP addresses, and the role of NAT in translating
+            addresses between networks.
+        </p>
+        <p>
+            One challenge was understanding how to use network commands
+            and interpret their results. I learned that ping can help
+            investigate connectivity, but a failed response does not
+            necessarily mean that a destination is unavailable. I also
+            learned that DNS problems and website service problems need
+            to be investigated separately. The workshop tools and learning
+            materials helped me understand these concepts more clearly.
+        </p>
+        <p>
+            These skills are relevant to network security because engineers
+            need to troubleshoot communication problems, understand network
+            traffic and identify exposed services. I want to practise more
+            so that I can interpret results confidently and explain my
+            findings clearly. I will use authorised lab environments and
+            avoid sharing sensitive network information.
+        </p>
+    </section>
+
+    <section>
+        <h2>6. My Next Steps</h2>
+        <ul>
+            <li>
+                <strong>Goal 1:</strong> Over the next two weeks, practise
+                using ipconfig, ping, nslookup and tracert on my own device
+                or in an authorised lab, and record what each result means.
+            </li>
+            <li>
+                <strong>Goal 2:</strong> Within four weeks, complete a
+                subnetting exercise involving /26, /27 and /28 networks
+                and explain how firewall rules can restrict traffic between
+                network segments.
+            </li>
+        </ul>
+    </section>
+
+    <p>
+        <a href="index.html">Return to my homepage</a>
+    </p>
+
+</main>
+
+<footer>
+    <p>CC6004 Network and Cloud Security | Week 4 Learning</p>
+</footer>
+
+</body>
+</html> <body>
 <h1>Hello, world!</h1>
 <p>This is my first website hosted on GitHub Pages By Assis Lima.</p>
 </body>
