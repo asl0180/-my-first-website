@@ -1,1 +1,1139 @@
-<a href="information-hiding.html">Information Hiding</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 5 - Information Hiding | CC6004</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  line-height: 1.7;
+  color: #263238;
+  background: #f2f5fa;
+}
+
+header {
+  background: #17365d;
+  color: white;
+  text-align: center;
+  padding: 45px 20px;
+}
+
+header h1 {
+  font-size: 34px;
+  margin: 0;
+}
+
+header p {
+  margin: 8px;
+}
+
+nav {
+  background: #102840;
+  padding: 15px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 12px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+main {
+  max-width: 1050px;
+  margin: 30px auto;
+  padding: 0 18px;
+}
+
+section {
+  background: white;
+  padding: 25px;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+}
+
+h2 {
+  color: #17365d;
+  border-bottom: 2px solid #dce6f1;
+  padding-bottom: 10px;
+}
+
+h3 {
+  color: #24527a;
+}
+
+code {
+  background: #edf1f5;
+  padding: 3px 6px;
+  border-radius: 4px;
+  overflow-wrap: anywhere;
+}
+
+.note {
+  background: #eaf3ff;
+  border-left: 5px solid #2878bd;
+  padding: 14px;
+  margin: 18px 0;
+}
+
+.warning {
+  background: #fff5e5;
+  border-left: 5px solid #e39b28;
+  padding: 14px;
+  margin: 18px 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0;
+}
+
+th, td {
+  border: 1px solid #d6dee8;
+  padding: 11px;
+  text-align: left;
+}
+
+th {
+  background: #eaf0f7;
+}
+
+a {
+  color: #1769aa;
+}
+
+.tool-link {
+  display: inline-block;
+  background: #17365d;
+  color: white;
+  padding: 9px 14px;
+  margin: 5px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+footer {
+  background: #17365d;
+  color: white;
+  text-align: center;
+  padding: 25px;
+  margin-top: 35px;
+}
+
+@media(max-width: 650px) {
+  nav a {
+    display: inline-block;
+    margin: 5px;
+  }
+
+  section {
+    padding: 17px;
+  }
+
+  header h1 {
+    font-size: 27px;
+  }
+
+  table {
+    font-size: 13px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Week 5: Information Hiding</h1>
+  <p>CC6004 – Network and Cloud Security</p>
+  <p>Level 6 | London Metropolitan University</p>
+  <p>Learning Notes, Practical Activities and Security Investigations</p>
+</header>
+
+<nav>
+  <a href="index.html">Home</a>
+  <a href="tcpip-troubleshooting.html">Week 4</a>
+  <a href="week5-information-hiding.html">Week 5</a>
+  <a href="reflection.html">Reflection</a>
+</nav>
+
+<main>
+
+<section id="introduction">
+<h2>1. Introduction to Information Hiding</h2>
+
+<p>
+Information hiding is the process of concealing information inside
+another digital file or communication. The information may be hidden
+inside an image, PDF document, audio file, video or network traffic.
+</p>
+
+<h3>Steganography</h3>
+<p>
+Steganography is a technique used to hide the existence of information.
+A person looking at the carrier file may not realise that another
+message is contained inside it.
+</p>
+
+<h3>Cryptography</h3>
+<p>
+Cryptography protects information by transforming it into an
+unreadable form. The correct key is normally needed to recover
+the original message.
+</p>
+
+<h3>Steganalysis</h3>
+<p>
+Steganalysis is the investigation of files or communications to
+identify possible hidden information.
+</p>
+
+<div class="note">
+<strong>Important difference:</strong> Cryptography hides the meaning
+of information, while steganography attempts to hide the existence
+of the information itself.
+</div>
+
+</section>
+
+<section>
+<h2>2. Types of Steganography</h2>
+
+<ul>
+<li><strong>Pure steganography:</strong> hides information without
+using a secret key.</li>
+<li><strong>Private-key steganography:</strong> uses the same secret
+key to hide and recover information.</li>
+<li><strong>Public-key steganography:</strong> uses different but
+related keys for hiding and recovering information.</li>
+</ul>
+
+<h3>Common carrier files</h3>
+<ul>
+<li>Image files: PNG, BMP, GIF and JPEG.</li>
+<li>PDF documents.</li>
+<li>Audio and video files.</li>
+<li>Word documents and other digital files.</li>
+</ul>
+
+</section>
+
+<section>
+<h2>3. Caesar Cipher Practical Activity</h2>
+
+<p>
+A Caesar cipher is a substitution technique. It changes letters
+by shifting them through the alphabet.
+</p>
+
+<p><strong>Week 5 encrypted message:</strong></p>
+<p><code>Gr qrw jhw vfduhg ri wkh xqnrzq brx fdq dozdbv ohduq</code></p>
+
+<p>
+Using CyberChef with the Caesar cipher and shift 23 gives the
+intended message:
+</p>
+
+<p><strong>Decoded message:</strong></p>
+<p><code>Do not get scared of the unknown you can always learn</code></p>
+
+<p>
+This activity helped me understand how a simple substitution cipher
+can be used to transform a message and how the correct shift can
+recover the original text.
+</p>
+
+<a class="tool-link"
+href="https://gchq.github.io/CyberChef/"
+target="_blank" rel="noopener">Open CyberChef</a>
+
+</section>
+
+<section>
+<h2>4. Base64 Encoding Practical Activity</h2>
+
+<p>
+Base64 converts data into a text representation using a set of
+64 characters. It is commonly used to represent binary data in
+text-based systems.
+</p>
+
+<p><strong>Original message:</strong></p>
+<p><code>CLOUD LAB SAFE</code></p>
+
+<p><strong>Base64 encoded message:</strong></p>
+<p><code>Q0xPVUQgTEFCIFNBRkU=</code></p>
+
+<div class="warning">
+Base64 is encoding, not encryption. It does not require a secret
+key and does not provide confidentiality. Anyone can decode it.
+</div>
+
+</section>
+
+<section>
+<h2>5. Image Steganography</h2>
+
+<p>
+Image steganography hides information inside an image. A digital
+image consists of pixels, and each pixel can contain colour
+components such as red, green and blue (RGB).
+</p>
+
+<h3>Least Significant Bit (LSB)</h3>
+
+<p>
+LSB means Least Significant Bit. It is a technique that stores
+information by changing the lowest-value bit in a pixel colour
+component. These small changes may be difficult to notice by
+looking at the image.
+</p>
+
+<h3>Image formats</h3>
+
+<table>
+<tr>
+<th>Format</th>
+<th>Characteristics</th>
+</tr>
+<tr>
+<td>BMP</td>
+<td>Often uncompressed, allowing direct access to pixel data.</td>
+</tr>
+<tr>
+<td>GIF</td>
+<td>Uses indexed colours and supports up to 256 colours in a frame.</td>
+</tr>
+<tr>
+<td>JPEG</td>
+<td>Uses lossy compression, which can affect hidden information.</td>
+</tr>
+<tr>
+<td>PNG</td>
+<td>Uses lossless compression and can preserve pixel values.</td>
+</tr>
+</table>
+
+<h3>Three important measurements</h3>
+
+<ul>
+<li><strong>Capacity:</strong> how much information can be hidden
+inside an image.</li>
+<li><strong>Detectability:</strong> how easily hidden information
+can be discovered.</li>
+<li><strong>Distortion:</strong> how much the image changes when
+information is hidden.</li>
+</ul>
+
+<h3>Practical experiment</h3>
+
+<p>
+The Week 5 activity involved creating a harmless cover image using
+a white background, blue rectangle and yellow circle. A test message
+was then hidden inside the PNG image and recovered using a
+steganography tool.
+</p>
+
+<p><strong>Test message:</strong></p>
+<p><code>CC6004 | Training data only | Cloud transfer simulation</code></p>
+
+<p>
+The original cover image and the image containing the hidden
+message can be compared. The message should be recoverable from
+the stego image.
+</p>
+
+<a class="tool-link"
+href="https://stylesuxx.github.io/steganography/"
+target="_blank" rel="noopener">Image Steganography Tool</a>
+
+<div class="note">
+PNG uses lossless compression. JPEG uses lossy compression,
+which may damage hidden data in some basic steganography methods.
+</div>
+
+</section>
+
+<section>
+<h2>6. DCT, Quantisation and PSNR</h2>
+
+<h3>Discrete Cosine Transform (DCT)</h3>
+
+<p>
+The research paper explains that JPEG uses the Discrete Cosine
+Transform to represent image information in frequency components.
+The described example uses 8 × 8 pixel blocks.
+</p>
+
+<h3>Quantisation</h3>
+
+<p>
+Quantisation reduces or rounds values during compression.
+This helps reduce file size but can also remove image information.
+</p>
+
+<h3>Peak Signal-to-Noise Ratio (PSNR)</h3>
+
+<p>
+PSNR is a measurement used to compare image quality. It is
+expressed in decibels (dB).
+</p>
+
+<p>
+The paper reports the following values in its comparison:
+</p>
+
+<table>
+<tr><th>Image format</th><th>Reported PSNR</th></tr>
+<tr><td>PNG</td><td>9.34 dB</td></tr>
+<tr><td>GIF</td><td>10.86 dB</td></tr>
+<tr><td>BMP</td><td>65 dB in the table</td></tr>
+<tr><td>JPEG</td><td>8.99 dB</td></tr>
+</table>
+
+<div class="warning">
+The paper's table reports 65 dB for BMP, while its conclusion
+mentions 68 dB. This is a discrepancy in the supplied paper.
+These figures are author-reported experimental results.
+</div>
+
+</section>
+
+<section>
+<h2>7. Distributed Image Steganography: DSoBMP-I</h2>
+
+<p>
+The research paper describes a technique called DSoBMP-I.
+It distributes hidden information across multiple images.
+</p>
+
+<p>
+In the example, the original image is split into four parts
+using a 2 × 2 arrangement. The parts are converted into BMP
+images, and hidden information is distributed across them.
+</p>
+
+<p>
+The authors report that their method increased capacity and
+reduced detectability and distortion in their experiment.
+</p>
+
+<div class="note">
+These results relate to the authors' particular experimental
+setup. They should not be treated as universal performance
+guarantees.
+</div>
+
+</section>
+
+<section>
+<h2>8. PDF Steganography</h2>
+
+<p>
+PDF documents can contain more than the text and images that
+appear on the visible page. They may contain objects, metadata,
+attachments, scripts and other structures.
+</p>
+
+<h3>PDF code investigation</h3>
+
+<p>
+The Week 5 PDF exercise included a visible sentence:
+</p>
+
+<p><code>This PDF I created from Scratch</code></p>
+
+<p>
+The example also contained additional text outside the visible
+page content. This demonstrated why an investigator should not
+only look at what appears on the PDF page.
+</p>
+
+<h3>Important PDF instructions</h3>
+
+<table>
+<tr><th>Instruction</th><th>Meaning</th></tr>
+<tr><td><code>BT</code></td><td>Begins a text object.</td></tr>
+<tr><td><code>/F1 18 Tf</code></td><td>Selects a font and font size.</td></tr>
+<tr><td><code>0 0 Td</code></td><td>Sets a text position.</td></tr>
+<tr><td><code>Tj</code></td><td>Displays text.</td></tr>
+<tr><td><code>ET</code></td><td>Ends a text object.</td></tr>
+<tr><td><code>xref</code></td><td>Introduces the cross-reference table.</td></tr>
+<tr><td><code>trailer</code></td><td>Contains PDF document information.</td></tr>
+<tr><td><code>%%EOF</code></td><td>Expected end-of-file marker.</td></tr>
+</table>
+
+<h3>PDF investigation methods</h3>
+
+<ul>
+<li>Text and spacing analysis.</li>
+<li>JavaScript investigation.</li>
+<li>Metadata analysis.</li>
+<li>Structural analysis.</li>
+<li>Statistical analysis.</li>
+<li>Dynamic analysis.</li>
+<li>Checking attachments and embedded objects.</li>
+</ul>
+
+<div class="warning">
+Extra text outside visible page content does not automatically
+prove malware or a valid hidden message. PDF structure and
+parser behaviour must be examined.
+</div>
+
+</section>
+
+<section>
+<h2>9. Statistical Analysis</h2>
+
+<p>
+Statistical analysis uses mathematical methods to investigate
+patterns in files and identify possible hidden information.
+</p>
+
+<p>
+The lecture discusses mathematical algorithms, pattern
+recognition, neural networks and genetic algorithms as possible
+approaches.
+</p>
+
+<p>
+In image steganography, statistical analysis may identify
+unusual patterns caused by substitution techniques such as LSB.
+</p>
+
+</section>
+
+<section>
+<h2>10. Dynamic Analysis</h2>
+
+<p>
+Dynamic analysis investigates how a file or program behaves
+during examination or execution in a controlled environment.
+</p>
+
+<p>
+It can help identify suspicious activity that may not be
+obvious from the file's visible content.
+</p>
+
+<p>
+The lecture discusses intelligent software, machine learning,
+digital signatures, insecure loading and component usage.
+</p>
+
+</section>
+
+<section>
+<h2>11. Metadata Analysis</h2>
+
+<p>
+Metadata is information that describes a digital file. It may
+include file properties, creation information, modification
+details and other technical information.
+</p>
+
+<p>
+Investigators can examine metadata to identify unusual or
+inconsistent details.
+</p>
+
+<div class="note">
+Metadata is not always the same as a file header. Different
+file formats store metadata in different ways.
+</div>
+
+</section>
+
+<section>
+<h2>12. Compression and Information Hiding</h2>
+
+<p>
+Compression reduces the size of digital files. It is commonly
+used when storing or transferring large documents and
+multimedia files.
+</p>
+
+<p>
+The lecture discusses compression in PDF documents and the
+possibility of combining compression with other hiding methods.
+</p>
+
+<p>
+Different compression methods and file structures may affect
+how security tools inspect files.
+</p>
+
+</section>
+
+<section>
+<h2>13. Network Steganography</h2>
+
+<p>
+Network steganography hides information inside network
+communication. One example discussed in the Week 5 activities
+is hiding encoded data inside DNS queries.
+</p>
+
+<h3>Example observations</h3>
+
+<table>
+<tr><th>Observation</th><th>Possible interpretation</th></tr>
+<tr>
+<td>Four ordinary DNS queries</td>
+<td>May be normal network activity.</td>
+</tr>
+<tr>
+<td>48 long and varied DNS queries in two minutes</td>
+<td>Suspicious pattern that needs investigation.</td>
+</tr>
+<tr>
+<td>Large HTTPS upload to an unapproved destination</td>
+<td>Possible unauthorised data transfer.</td>
+</tr>
+<tr>
+<td>Scheduled encrypted backup to approved storage</td>
+<td>May be expected if it matches the approved process.</td>
+</tr>
+</table>
+
+<h3>DNS and HTTPS investigation</h3>
+
+<p>
+DNS queries can contain encoded information in subdomain labels.
+Unusual query length and frequency may be indicators of possible
+DNS tunnelling or concealed communication.
+</p>
+
+<p>
+HTTPS encrypts the content travelling between systems, but
+metadata such as destination, timing and traffic volume may
+still be observable.
+</p>
+
+<div class="warning">
+Unusual traffic is an indicator, not proof of data theft.
+Investigators should compare DNS logs, endpoint activity,
+proxy records and cloud audit logs.
+</div>
+
+</section>
+
+<section>
+<h2>14. Cloud Security and Defence in Depth</h2>
+
+<p>
+Cloud services allow users to store and share information
+through internet-based platforms. Information hiding can
+create risks when data is transferred without permission.
+</p>
+
+<table>
+<tr><th>Security risk</th><th>Possible defence</th></tr>
+<tr>
+<td>Anonymous sharing link exposes restricted file</td>
+<td>Private sharing and least privilege.</td>
+</tr>
+<tr>
+<td>Sensitive data copied to USB</td>
+<td>Endpoint Data Loss Prevention.</td>
+</tr>
+<tr>
+<td>Unapproved external cloud upload</td>
+<td>Cloud DLP, CASB and egress controls.</td>
+</tr>
+<tr>
+<td>Suspicious DNS activity</td>
+<td>DNS monitoring and investigation.</td>
+</tr>
+<tr>
+<td>File changed without approval</td>
+<td>Versioning and audit logs.</td>
+</tr>
+<tr>
+<td>Licensed diagram reposted without credit</td>
+<td>Watermarking and appropriate rights management.</td>
+</tr>
+</table>
+
+<h3>Important cloud security terms</h3>
+
+<ul>
+<li><strong>DLP:</strong> Data Loss Prevention, which helps protect
+sensitive information from inappropriate sharing or transfer.</li>
+<li><strong>CASB:</strong> Cloud Access Security Broker, which
+helps monitor and enforce policies for cloud applications.</li>
+<li><strong>EDR:</strong> Endpoint Detection and Response, which
+helps investigate and respond to endpoint threats.</li>
+<li><strong>Least privilege:</strong> users receive only the
+permissions they need.</li>
+<li><strong>Defence in depth:</strong> multiple security controls
+are used together rather than relying on one control.</li>
+</ul>
+
+</section>
+
+<section>
+<h2>15. Cloud Incident Investigation</h2>
+
+<p>
+The Week 5 fictional incident log showed a sequence of
+suspicious cloud activities:
+</p>
+
+<table>
+<tr><th>Time</th><th>Event</th></tr>
+<tr><td>09:00</td><td>Known device signs in.</td></tr>
+<tr><td>09:02</td><td>Unfamiliar browser session appears.</td></tr>
+<tr><td>09:04</td><td>research-plan.png is downloaded.</td></tr>
+<tr><td>09:06</td><td>Sharing link changed to anyone with the link.</td></tr>
+<tr><td>09:08</td><td>85 MB uploaded to unapproved external storage.</td></tr>
+<tr><td>09:09</td><td>DLP alert identifies restricted research label.</td></tr>
+<tr><td>09:11</td><td>Administrator revokes the sharing link.</td></tr>
+</table>
+
+<h3>Investigation priorities</h3>
+
+<ol>
+<li>Investigate the unfamiliar browser session.</li>
+<li>Review the public sharing link.</li>
+<li>Investigate the 85 MB external upload.</li>
+<li>Review the DLP alert and file classification.</li>
+<li>Preserve relevant logs and evidence.</li>
+<li>Revoke risky access and review active sessions.</li>
+</ol>
+
+<div class="warning">
+Revoking a sharing link does not undo downloads that may
+have happened before the link was revoked.
+</div>
+
+</section>
+
+<section>
+<h2>16. Hashing and File Integrity</h2>
+
+<p>
+A cryptographic hash creates a fixed-length value from digital
+data. SHA-256 is an example of a cryptographic hash function.
+</p>
+
+<p><strong>Original test message:</strong></p>
+<p><code>CC6004 approved cloud research file</code></p>
+
+<p>
+Adding a full stop changes the message and produces a different
+SHA-256 hash.
+</p>
+
+<h3>What hashing can tell us</h3>
+
+<ul>
+<li>It can help identify whether file contents have changed.</li>
+<li>Matching hashes provide strong practical evidence that
+two files contain the same bytes.</li>
+<li>A hash does not prove who created a file.</li>
+<li>A hash does not prove that a file is safe or truthful.</li>
+</ul>
+
+<h3>Additional cloud protections</h3>
+
+<ul>
+<li>Object versioning.</li>
+<li>Immutable audit logs.</li>
+<li>Retention controls.</li>
+<li>Access control and monitoring.</li>
+</ul>
+
+</section>
+
+<section>
+<h2>17. VirusTotal and EICAR Practical Activity</h2>
+
+<p>
+VirusTotal is an online service that can be used to examine
+file hashes and review security detection information.
+</p>
+
+<p>
+The Week 5 activity instructed students to search for the
+EICAR test string hash rather than upload files.
+</p>
+
+<p><strong>SHA-256 hash:</strong></p>
+
+<p>
+<code>275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f</code>
+</p>
+
+<a class="tool-link"
+href="https://www.virustotal.com/"
+target="_blank" rel="noopener">Open VirusTotal</a>
+
+<div class="warning">
+EICAR is a harmless antivirus test signature. An antivirus
+detection alone does not prove that a real malware infection
+has occurred. Detection counts can change over time.
+</div>
+
+</section>
+
+<section>
+<h2>18. Fictional Malware Alert Investigation</h2>
+
+<p>
+The Week 5 fictional malware alert contained the following events:
+</p>
+
+<table>
+<tr><th>Time</th><th>Event</th></tr>
+<tr><td>10:00</td><td>External guest uploads invoice_Q4.zip.</td></tr>
+<tr><td>10:01</td><td>Scanner flags the file.</td></tr>
+<tr><td>10:02</td><td>File shared with 18 staff members.</td></tr>
+<tr><td>10:05</td><td>Two people preview the file.</td></tr>
+<tr><td>10:07</td><td>One endpoint downloads the file.</td></tr>
+<tr><td>10:09</td><td>Endpoint protection blocks an attempted launch.</td></tr>
+</table>
+
+<h3>Recommended response</h3>
+
+<ol>
+<li>Restrict or quarantine the suspicious file.</li>
+<li>Preserve cloud and endpoint logs.</li>
+<li>Investigate who accessed or downloaded the file.</li>
+<li>Review the endpoint protection alert.</li>
+<li>Check the file hash and scanner results.</li>
+<li>Confirm the activity with the relevant user or administrator.</li>
+</ol>
+
+<div class="note">
+A preview or download does not prove malware executed.
+A blocked launch does not prove that execution succeeded.
+</div>
+
+</section>
+
+<section>
+<h2>19. Comparing Malware Alert Cases</h2>
+
+<table>
+<tr><th>Case</th><th>Evidence</th><th>Suggested response</th></tr>
+<tr>
+<td>A – eicar_test.txt</td>
+<td>Known harmless antivirus test signature and no execution evidence.</td>
+<td>Verify the test was authorised and handle according to policy.</td>
+</tr>
+<tr>
+<td>B – budget_2026.xlsx</td>
+<td>One weak detection and an approved owner with normal history.</td>
+<td>A false positive is plausible. Validate before allowing the file.</td>
+</tr>
+<tr>
+<td>C – shared_tool.exe</td>
+<td>Multiple detections, unknown publisher and unexpected file.</td>
+<td>Quarantine and escalate for investigation.</td>
+</tr>
+</table>
+
+<h3>Important security tools</h3>
+
+<ul>
+<li>Cloud-native malware scanning checks uploaded files.</li>
+<li>CASB monitors and enforces cloud application policies.</li>
+<li>DLP helps protect sensitive information.</li>
+<li>EDR investigates and responds to endpoint threats.</li>
+</ul>
+
+<p>
+Encrypted ZIP files and images containing hidden information
+may not be fully assessed by basic scanning tools.
+</p>
+
+</section>
+
+<section>
+<h2>20. Social Engineering</h2>
+
+<p>
+Social engineering is the use of manipulation to persuade
+people to reveal information, click links or perform actions
+that may compromise security.
+</p>
+
+<h3>Common techniques</h3>
+
+<ul>
+<li><strong>Urgency:</strong> pressuring someone to act quickly.</li>
+<li><strong>Authority:</strong> pretending to be a manager or
+trusted person.</li>
+<li><strong>Fear:</strong> threatening account closure or other
+negative consequences.</li>
+<li><strong>Curiosity:</strong> encouraging someone to open an
+unexpected attachment.</li>
+<li><strong>Trust:</strong> pretending to represent a familiar
+organisation.</li>
+</ul>
+
+<h3>How to reduce the risk</h3>
+
+<ul>
+<li>Check unexpected emails and messages carefully.</li>
+<li>Verify unusual requests through a trusted channel.</li>
+<li>Never share passwords or authentication codes.</li>
+<li>Use multi-factor authentication (MFA).</li>
+<li>Report suspicious messages.</li>
+</ul>
+
+<div class="note">
+The lecture identifies people as an important part of
+cybersecurity. Security awareness and technical controls
+should work together.
+</div>
+
+</section>
+
+<section>
+<h2>21. Deepfakes and Media Provenance</h2>
+
+<p>
+A deepfake is media that has been generated or manipulated
+to look or sound like a real person or event.
+</p>
+
+<p>
+Media provenance is information about where media came from
+and how it has been handled or changed.
+</p>
+
+<h3>Investigating suspicious media</h3>
+
+<ul>
+<li>Find the original source.</li>
+<li>Check available timestamps and upload history.</li>
+<li>Look for independent confirmation.</li>
+<li>Check official communication channels.</li>
+<li>Look for signed provenance information where available.</li>
+<li>Do not treat a video alone as proof of a claim.</li>
+</ul>
+
+<div class="warning">
+A provenance record can help establish the history of media,
+but it does not automatically prove that the statements in
+the media are true.
+</div>
+
+</section>
+
+<section>
+<h2>22. Detection Metrics</h2>
+
+<p>
+Detection systems can be evaluated using four measures:
+true positives, false positives, false negatives and
+true negatives.
+</p>
+
+<table>
+<tr><th>Measure</th><th>Value</th></tr>
+<tr><td>True positives (TP)</td><td>8</td></tr>
+<tr><td>False positives (FP)</td><td>2</td></tr>
+<tr><td>False negatives (FN)</td><td>12</td></tr>
+<tr><td>True negatives (TN)</td><td>78</td></tr>
+<tr><td>Total</td><td>100</td></tr>
+</table>
+
+<h3>Precision</h3>
+<p>
+Precision = TP ÷ (TP + FP)
+</p>
+<p>
+8 ÷ (8 + 2) = <strong>80%</strong>
+</p>
+
+<h3>Recall</h3>
+<p>
+Recall = TP ÷ (TP + FN)
+</p>
+<p>
+8 ÷ (8 + 12) = <strong>40%</strong>
+</p>
+
+<h3>F1 Score</h3>
+<p>
+F1 score = 2 × (Precision × Recall) ÷ (Precision + Recall)
+</p>
+<p><strong>Approximately 53.3%</strong></p>
+
+<div class="note">
+The system has 80% precision but only 40% recall. It correctly
+identifies many of its alerts, but it misses 12 of the 20
+actual positive cases. This shows why recall is important
+when evaluating security detection.
+</div>
+
+</section>
+
+<section>
+<h2>23. Practical Tools and Safe Learning</h2>
+
+<p>The following tools were used or discussed in the Week 5 activities:</p>
+
+<ul>
+<li>
+<a href="https://gchq.github.io/CyberChef/"
+target="_blank" rel="noopener">CyberChef</a> –
+encoding and decoding exercises.
+</li>
+<li>
+<a href="https://stylesuxx.github.io/steganography/"
+target="_blank" rel="noopener">Image Steganography Tool</a> –
+practice hiding and recovering harmless test messages.
+</li>
+<li>
+<a href="https://www.virustotal.com/"
+target="_blank" rel="noopener">VirusTotal</a> –
+search file hashes and review detection information.
+</li>
+</ul>
+
+<div class="warning">
+Only use harmless test messages and files that you own or
+are authorised to examine. Do not upload confidential
+university, personal or organisational files to public
+scanning services.
+</div>
+
+</section>
+
+<section>
+<h2>24. Week 5 Reflection</h2>
+
+<p>
+This week helped me understand how information can be hidden
+in different digital files, including images, PDFs and network
+traffic. I learned that steganography hides the existence
+of information, while cryptography protects information by
+making it unreadable without the correct key.
+</p>
+
+<p>
+I also learned about Least Significant Bit (LSB) image
+steganography, PDF structures, metadata analysis, statistical
+analysis and dynamic analysis. These techniques are important
+because hidden information may create security risks when
+files are shared through cloud services.
+</p>
+
+<p>
+The practical activities helped me understand Caesar cipher
+decoding, Base64 encoding, image steganography and PDF
+investigation. I also learned how file hashes can be used
+to check integrity and how detection metrics help evaluate
+security systems.
+</p>
+
+<p>
+The cloud security activities helped me understand the
+importance of access control, Data Loss Prevention, CASB,
+endpoint monitoring and audit logs. I learned that suspicious
+activity should be investigated using evidence rather than
+assumptions.
+</p>
+
+<p>
+My main learning point is that one security tool is not
+enough. Organisations need multiple layers of protection
+and careful investigation to protect their information.
+</p>
+
+</section>
+
+<section>
+<h2>25. References</h2>
+
+<ol>
+
+<li>
+Araujo, I.I. and Kazemian, H. (2019)
+'Enhancement of Capacity, Detectability and Distortion of
+BMP, GIF and JPEG images with Distributed Steganography',
+<em>International Journal of Computer Network and Information
+Security</em>, 11(11), pp. 21–27.
+doi: 10.5815/ijcnis.2019.11.03.
+</li>
+
+<li>
+Araujo, I.I. and Kazemian, H. (2020)
+'Vulnerability Exploitations Using Steganography in PDF Files',
+<em>International Journal of Computer Networks and Applications</em>,
+7(1), pp. 10–18.
+doi: 10.22247/ijcna/2020/193270.
+</li>
+
+<li>
+Mayer, J. (ed.) (2024)
+<em>Steganography: The Art of Hiding Information</em>.
+IntechOpen.
+</li>
+
+<li>
+GitHub Docs,
+<a href="https://docs.github.com/en/pages"
+target="_blank" rel="noopener">GitHub Pages documentation</a>.
+</li>
+
+</ol>
+
+<p>
+The references above are based on the learning materials
+provided for this Week 5 study. Check the edited book's
+contents page before citing a particular chapter.
+</p>
+
+</section>
+
+<section>
+<h2>Back to My Website</h2>
+
+<p>
+<a href="index.html">Return to my homepage</a>
+</p>
+
+<p>
+<a href="tcpip-troubleshooting.html">
+Visit Week 4: TCP/IP Troubleshooting
+</a>
+</p>
+
+<p>
+<a href="reflection.html">Visit my reflection page</a>
+</p>
+
+</section>
+
+</main>
+
+<footer>
+<p>CC6004 – Network and Cloud Security</p>
+<p>Week 5: Information Hiding</p>
+<p>London Metropolitan University</p>
+</footer>
+
+</body>
+</html>
