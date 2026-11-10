@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week 7 – Firewalls | Cybersecurity Learning Hub</title>
+  <style>
+    :root { --navy:#14243a; --blue:#1769aa; --pale:#eef5fb; --ink:#243244; --muted:#5c6b7a; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family:Arial, sans-serif; line-height:1.65; color:var(--ink); background:#f5f7fa; }
+    header { background:var(--navy); color:white; padding:34px 20px; text-align:center; }
+    header p { margin:8px auto 0; max-width:760px; color:#dbe7f3; }
+    nav { background:#203b5c; padding:11px 16px; text-align:center; }
+    nav a { color:white; margin:0 10px; text-decoration:none; font-weight:bold; }
+    main { max-width:1000px; margin:28px auto; padding:0 18px; }
+    section, .panel { background:white; padding:22px; margin:18px 0; border-radius:12px; box-shadow:0 2px 10px #14243a12; }
+    h2 { color:var(--navy); border-bottom:2px solid #dce8f3; padding-bottom:7px; }
+    h3 { color:var(--blue); margin-bottom:6px; }
+    .intro { background:var(--pale); border-left:5px solid var(--blue); padding:14px 18px; border-radius:8px; }
+    a { color:#075fa8; }
+    li { margin:7px 0; }
+    .tag { display:inline-block; background:#e8f1fa; color:#174b78; padding:3px 9px; border-radius:20px; font-size:.85rem; margin:3px; }
+    .resource { padding:12px 0; border-bottom:1px solid #e5eaf0; }
+    .resource:last-child { border-bottom:0; }
+    .note { color:var(--muted); font-size:.95rem; }
+    code { background:#edf1f5; padding:2px 5px; border-radius:4px; }
+    footer { text-align:center; padding:24px; color:var(--muted); }
+    @media (max-width:600px) { header { padding:26px 16px; } nav a { display:inline-block; margin:5px 8px; } section { padding:17px; } }
+  </style>
+</head>
+<body>
+<header>
+  <h1>Week 7 – Firewalls</h1>
+  <p>CC6004 Network and Cloud Security · Study notes, practical activities and further reading</p>
+</header>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="#fundamentals">Fundamentals</a>
+  <a href="#types">Types</a>
+  <a href="#rules">Rules</a>
+  <a href="#practical">Practical work</a>
+  <a href="#resources">Resources</a>
+</nav>
+<main>
+  <div class="intro">
+    <strong>Learning outcomes</strong>
+    <ul>
+      <li>Explain what firewalls can and cannot do.</li>
+      <li>Compare hardware and software firewalls.</li>
+      <li>Describe common packet-filtering approaches.</li>
+      <li>Design packet-filtering and firewall rule sets.</li>
+    </ul>
+  </div>
+
+  <section id="fundamentals">
+    <h2>1. What is a firewall?</h2>
+    <p>A firewall is a security control that monitors and filters network traffic according to a set of rules. It can allow permitted communications and block traffic that does not meet the rules.</p>
+    <p>Firewalls can protect a computer, a network boundary, a cloud environment or separate sections of an organisation's network.</p>
+    <h3>What a firewall can do</h3>
+    <ul>
+      <li>Allow or block traffic based on addresses, ports, protocols, connection state or application rules.</li>
+      <li>Restrict access to servers and network services.</li>
+      <li>Help separate public-facing systems from private internal systems.</li>
+      <li>Record events that can help with monitoring and investigation.</li>
+    </ul>
+    <h3>What a firewall cannot guarantee</h3>
+    <ul>
+      <li>It cannot stop every insider threat or malicious action by an authorised user.</li>
+      <li>It cannot inspect traffic that does not pass through it.</li>
+      <li>It does not replace endpoint protection, secure configuration, patching, authentication or user awareness.</li>
+      <li>Allowing encrypted HTTPS traffic does not automatically mean its contents have been inspected.</li>
+    </ul>
+    <p><strong>Key idea:</strong> A firewall is one layer of defence, not complete security on its own.</p>
+  </section>
+
+  <section id="types">
+    <h2>2. Types of firewalls</h2>
+    <h3>Packet-filtering firewall</h3>
+    <p>Checks packet header information such as source IP, destination IP, protocol and port number. A basic packet filter does not necessarily remember previous packets.</p>
+    <h3>Stateless firewall</h3>
+    <p>Evaluates each packet independently against its rules. It is relatively simple, but it does not track the context of an established conversation.</p>
+    <h3>Stateful inspection firewall</h3>
+    <p>Keeps a state table of active connections. It can recognise whether a packet belongs to a permitted, established communication session.</p>
+    <h3>Circuit-level gateway</h3>
+    <p>Checks connection/session establishment and whether a session is legitimate. It generally does not inspect application data in the same depth as an application proxy.</p>
+    <h3>Application-level gateway (proxy firewall)</h3>
+    <p>Acts as an intermediary for application traffic and can inspect application-level information, such as web requests.</p>
+    <h3>Next-generation firewall (NGFW)</h3>
+    <p>Combines traditional firewall controls with deeper traffic inspection and additional security capabilities. Depending on the product, these may include application awareness, intrusion prevention and malware-related controls.</p>
+    <div><span class="tag">Packet filtering</span><span class="tag">Stateless</span><span class="tag">Stateful</span><span class="tag">Circuit gateway</span><span class="tag">Application proxy</span><span class="tag">NGFW</span></div>
+  </section>
+
+  <section>
+    <h2>3. Firewall deployment and configurations</h2>
+    <ul>
+      <li><strong>Hardware firewall:</strong> a physical appliance protecting traffic between networks.</li>
+      <li><strong>Software/host firewall:</strong> runs on an individual computer or server, such as Windows Defender Firewall.</li>
+      <li><strong>Cloud firewall:</strong> firewall controls delivered or managed in a cloud environment.</li>
+      <li><strong>Virtual wire:</strong> an inline deployment that can pass traffic without requiring the firewall to act as a conventional routed hop.</li>
+      <li><strong>Layer 2:</strong> operates at the data-link layer and can filter bridged traffic.</li>
+      <li><strong>Layer 3:</strong> operates with IP routing and can apply filtering to routed traffic.</li>
+      <li><strong>Edge protection:</strong> controls traffic entering or leaving an organisation's network.</li>
+      <li><strong>Internal segmentation:</strong> restricts traffic between internal network zones.</li>
+    </ul>
+    <h3>DMZ (demilitarised zone)</h3>
+    <p>A DMZ is a separate network zone for systems that need to be reachable from less-trusted networks, such as public web servers. It helps prevent direct access from the internet to the private internal network.</p>
+    <p>Example: allow internet users to reach the public web server on TCP 443, while denying direct internet access to internal staff devices.</p>
+  </section>
+
+  <section id="rules">
+    <h2>4. Firewall rules, ACLs and rule order</h2>
+    <p>A firewall rule can use a combination of:</p>
+    <ul>
+      <li>Source IP address and destination IP address</li>
+      <li>Protocol (for example TCP, UDP or ICMP)</li>
+      <li>Source and destination ports, where applicable</li>
+      <li>Application, connection state, interface or time schedule (depending on the firewall)</li>
+      <li>Action: allow, deny or drop, and sometimes log</li>
+    </ul>
+    <h3>How rule processing works</h3>
+    <ol>
+      <li>Rules are commonly checked from top to bottom.</li>
+      <li>The first matching rule determines the action in a first-match rule set.</li>
+      <li>Put specific rules before broad rules so a broad rule does not override the intended exception.</li>
+      <li>An implicit deny means traffic not matched by an allow rule is denied by default.</li>
+      <li>An explicit deny-all rule at the bottom can make the policy visible and may support logging, depending on the platform.</li>
+    </ol>
+    <h3>Common ports from the workshop</h3>
+    <ul>
+      <li><strong>22/TCP:</strong> SSH remote administration</li>
+      <li><strong>25/TCP:</strong> SMTP mail transfer</li>
+      <li><strong>53:</strong> DNS (commonly UDP, also TCP)</li>
+      <li><strong>80/TCP:</strong> HTTP web traffic</li>
+      <li><strong>123/UDP:</strong> NTP time synchronisation</li>
+      <li><strong>443/TCP:</strong> HTTPS web traffic</li>
+      <li><strong>ICMP:</strong> network control and diagnostic messages; it does not use TCP/UDP port numbers.</li>
+    </ul>
+    <p class="note">Do not open a port to everyone unless the service genuinely needs to be publicly reachable. Restrict management access, define source addresses where possible, log appropriately and use default-deny policies.</p>
+  </section>
+
+  <section>
+    <h2>5. NAT and firewalls</h2>
+    <p><strong>Network Address Translation (NAT)</strong> changes address information, commonly translating private internal addresses to a public address for internet access. A NAT device may keep translation information so return traffic can be directed to the correct internal device.</p>
+    <p><strong>NAT is not the same as a firewall.</strong> NAT performs address translation; a firewall applies a security policy to traffic. A device can provide both functions, but they are conceptually different.</p>
+  </section>
+
+  <section>
+    <h2>6. Threats and firewall protections</h2>
+    <ul>
+      <li><strong>IP spoofing:</strong> an attacker forges a source IP address. Ingress and egress filtering can reject traffic with impossible or inappropriate source addresses.</li>
+      <li><strong>SYN flood:</strong> an attacker sends many TCP connection-start requests to exhaust connection resources. Defences can include SYN cookies/proxies, rate limits, connection limits and upstream DDoS protection.</li>
+      <li><strong>Botnet DDoS:</strong> many compromised devices send traffic towards a target. Filtering and rate limiting may help, but large attacks often need upstream provider or specialist DDoS mitigation.</li>
+      <li><strong>SYN+FIN and NULL scans:</strong> unusual TCP flag combinations can be used in reconnaissance. They may be logged or filtered, but results vary by operating system and network device.</li>
+    </ul>
+    <p>Firewall controls should be combined with IDS/IPS, endpoint detection and response (EDR), secure configuration, patching and monitoring.</p>
+  </section>
+
+  <section>
+    <h2>7. IDS, IPS and monitoring</h2>
+    <ul>
+      <li><strong>IDS – Intrusion Detection System:</strong> monitors activity and raises alerts about suspicious behaviour.</li>
+      <li><strong>IPS – Intrusion Prevention System:</strong> can take action to block or prevent detected malicious traffic.</li>
+      <li><strong>EDR – Endpoint Detection and Response:</strong> monitors endpoint activity and supports investigation and response.</li>
+    </ul>
+    <p>Detection is not perfect: systems can produce false positives (benign activity incorrectly flagged) and false negatives (malicious activity missed). Alerts need investigation and tuning.</p>
+  </section>
+
+  <section id="practical">
+    <h2>8. Practical activities and tools</h2>
+    <h3>Windows Defender Firewall</h3>
+    <p>Explore the Windows Firewall profiles and inbound/outbound rules. Review which applications are allowed and why. Do not disable protection on a device you rely on.</p>
+    <h3>O&amp;O ShutUp10</h3>
+    <p>This is a Windows privacy-configuration utility, not a replacement for Windows Defender Firewall or a network firewall. Review recommendations carefully; changing privacy settings can affect Windows features. Use the official vendor website and consider creating a restore point before significant changes.</p>
+    <p><a href="https://www.oo-software.com/en/shutup10" target="_blank" rel="noopener">Official O&amp;O ShutUp10 website</a></p>
+    <h3>Workshop activities from the supplied reading list</h3>
+    <ul>
+      <li>Configuring the Windows Firewall</li>
+      <li>Using behaviour-based monitoring tools</li>
+      <li>Using an internet content filter</li>
+      <li>Configuring a Windows client for Network Access Protection</li>
+      <li>Comparing network firewalls</li>
+    </ul>
+  </section>
+
+  <section id="resources">
+    <h2>9. Videos and further reading</h2>
+    <p class="note">The video titles and summaries below are based on the notes you shared in our conversation. You had not supplied the actual YouTube URLs for these videos, so I have not guessed or invented video links. Add each real YouTube URL when you have it.</p>
+
+    <div class="resource">
+      <h3>Professor Messer – Firewall Rules, CompTIA Security+ SY0-401: 1.2</h3>
+      <p>Topics from your summary: procedural versus technical rules; firewall tuples; top-to-bottom rule processing; specific rules before broad rules; implicit deny; SSH, HTTP and HTTPS examples.</p>
+      <p><strong>YouTube URL:</strong> Not supplied yet.</p>
+    </div>
+    <div class="resource">
+      <h3>NAT and Firewall Explained</h3>
+      <p>Topics from your summary: NAT address translation; stateless versus stateful firewalls; application firewalls and deeper inspection.</p>
+      <p><strong>YouTube URL:</strong> Not supplied yet.</p>
+    </div>
+    <div class="resource">
+      <h3>Firewall Configurations – CompTIA Network+ N10-006: 3.5</h3>
+      <p>Topics from your summary: virtual wire, Layer 2 and Layer 3 deployments, edge protection, internal segmentation, DMZ, ACLs, implicit deny, inbound/outbound filtering, blacklisting and whitelisting.</p>
+      <p><strong>YouTube URL:</strong> Not supplied yet.</p>
+    </div>
+    <div class="resource">
+      <h3>Firewall rulebase video (title not supplied)</h3>
+      <p>Topics from your summary: rule tuples, first-match processing, rule order, implicit and explicit deny, and example service ports including SSH, HTTP, HTTPS, DNS and NTP.</p>
+      <p><strong>YouTube URL:</strong> Not supplied yet.</p>
+    </div>
+    <div class="resource">
+      <h3>Cisco Meraki Firewalls: MX Security &amp; SD-WAN Appliances</h3>
+      <p>You shared the title and duration (3:29), but not a video URL or transcript. Add the link when available.</p>
+      <p><strong>YouTube URL:</strong> Not supplied yet.</p>
+    </div>
+
+    <div class="resource">
+      <h3>TechTarget – The 5 Different Types of Firewalls Explained</h3>
+      <p><a href="https://www.techtarget.com/news/The-5-different-types-of-firewalls-explained/837024/" target="_blank" rel="noopener">Open TechTarget article</a></p>
+    </div>
+    <div class="resource">
+      <h3>Best Free Firewalls – Antivirus Software Guide</h3>
+      <p><a href="https://www.antivirussoftwareguide.com/best-free-firewall-protection-software" target="_blank" rel="noopener">Open free-firewall comparison</a></p>
+    </div>
+    <div class="resource">
+      <h3>Kurose and Ross – Computer Networking: A Top-Down Approach, 6th Edition</h3>
+      <p>Essential reading identified in your instructions: Chapter 8, firewall section, printed pages 731–739 (PDF page numbering may differ). The PDF itself was not supplied in the text you pasted.</p>
+    </div>
+    <div class="resource">
+      <h3>CompTIA Security+</h3>
+      <p><a href="https://www.comptia.org/en-us/certifications/security/" target="_blank" rel="noopener">Official CompTIA Security+ certification page</a></p>
+    </div>
+  </section>
+
+  <section>
+    <h2>10. Knowledge check</h2>
+    <ol>
+      <li>What is the main difference between a stateless and a stateful firewall?</li>
+      <li>Why are specific firewall rules normally placed above broad rules?</li>
+      <li>What does implicit deny mean?</li>
+      <li>Which port is normally used for HTTPS?</li>
+      <li>Why is a DMZ used for public-facing servers?</li>
+      <li>What is the difference between an IDS and an IPS?</li>
+      <li>Why is NAT not a complete replacement for a firewall?</li>
+      <li>Name two possible protections against a SYN flood.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>11. Reflection</h2>
+    <p>Use these prompts to record your own learning:</p>
+    <ul>
+      <li>Which firewall type do I understand best, and why?</li>
+      <li>Which concept do I need to practise more?</li>
+      <li>How would I explain default deny to someone new to networking?</li>
+      <li>What would I check before allowing a new service through a firewall?</li>
+    </ul>
+  </section>
+</main>
+<footer>
+  <p>CC6004 Network and Cloud Security · Week 7 learning notes</p>
+  <p><a href="index.html">Return to My Cybersecurity Learning Hub</a></p>
+</footer>
+</body>
+</html>
