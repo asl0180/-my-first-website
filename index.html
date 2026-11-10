@@ -21,9 +21,33 @@
             text-align: center;
             padding: 55px 20px;
         }
-        header h1 {
-            margin: 0;
-            font-size: 34px;
+       .profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    max-width: 750px;
+    margin: 25px auto 0;
+    text-align: left;
+}
+
+.profile img {
+    width: 170px;
+    height: 190px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 15px;
+    border: 3px solid white;
+}
+
+.profile-info h2 {
+    color: white;
+    margin: 0 0 10px;
+}
+
+.profile-info p {
+    margin: 6px 0;
+}
         }
         header p {
             font-size: 17px;
@@ -122,9 +146,15 @@
             padding: 22px;
             margin-top: 30px;
         }
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 26px;
+       .profile {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile img {
+        width: 150px;
+        height: 170px;
+    }
             }
             nav a {
                 display: inline-block;
