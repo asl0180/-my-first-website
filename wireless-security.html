@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Week 6 - Wireless Network Security</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: #f2f5f9;
+            color: #263238;
+        }
+        main {
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+        }
+        h1, h2 {
+            color: #174a70;
+        }
+        h3 {
+            color: #27658c;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 9px;
+            text-align: left;
+        }
+        th {
+            background: #e5edf4;
+        }
+        pre {
+            background: #eef1f4;
+            padding: 12px;
+            overflow-x: auto;
+            border-radius: 6px;
+        }
+        a {
+            color: #075a9c;
+        }
+    </style>
+</head>
+<body>
+<main>
+
+    <p><a href="index.html">← Back to Home</a></p>
+
+    <h1>Week 6: Wireless Network Security</h1>
+
+    <p>
+        This section explains wireless networking, Wi-Fi performance,
+        troubleshooting commands and wireless security.
+        It also introduces Wi-Fi 7, Artificial Intelligence (AI)
+        and Multi-Link Operation (MLO).
+    </p>
+
+    <h2>1. Wireless Network Fundamentals</h2>
+
+    <p>
+        Wireless networks allow computers and other devices to exchange
+        information without using physical network cables. They commonly
+        use radio frequency (RF) electromagnetic waves.
+    </p>
+
+    <ul>
+        <li><strong>RF:</strong> Radio frequency signals are commonly used by Wi-Fi.</li>
+        <li><strong>IR:</strong> Infrared is used for short-range communication, such as remote controls.</li>
+        <li><strong>Access Point (AP):</strong> Connects wireless devices to a network.</li>
+        <li><strong>WNIC:</strong> A wireless network interface card allows a device to connect wirelessly.</li>
+        <li><strong>Antenna:</strong> Transmits and receives wireless signals.</li>
+    </ul>
+
+    <h2>2. Wireless Signal and Interference</h2>
+
+    <p>
+        Wireless performance depends on signal strength, distance,
+        obstacles, interference and the number of devices using a channel.
+    </p>
+
+    <ul>
+        <li><strong>Absorption:</strong> Materials such as concrete and wood can reduce signal strength.</li>
+        <li><strong>Reflection:</strong> Signals bounce off objects.</li>
+        <li><strong>Scattering:</strong> Signals spread after encountering objects.</li>
+        <li><strong>Multipath fading:</strong> Reflected signals can interfere with the direct signal.</li>
+        <li><strong>Channel congestion:</strong> Many devices using the same channel can affect performance.</li>
+    </ul>
+
+    <h3>Common 2.4 GHz Wi-Fi channels</h3>
+
+    <p>
+        Channels 1, 6 and 11 are commonly used as non-overlapping
+        20 MHz channels in 2.4 GHz Wi-Fi.
+    </p>
+
+    <h2>3. Wireless Network Configurations</h2>
+
+    <ul>
+        <li><strong>BSS:</strong> A group of wireless devices served by one access point.</li>
+        <li><strong>ESS:</strong> Multiple access points provide connected wireless coverage.</li>
+        <li><strong>IBSS:</strong> An ad-hoc wireless network where devices communicate without an access point.</li>
+    </ul>
+
+    <h2>4. Wi-Fi Standards</h2>
+
+    <table>
+        <tr>
+            <th>Wi-Fi generation</th>
+            <th>IEEE standard</th>
+            <th>Main feature</th>
+        </tr>
+        <tr>
+            <td>Wi-Fi 5</td>
+            <td>802.11ac</td>
+            <td>Wireless improvements using 5 GHz</td>
+        </tr>
+        <tr>
+            <td>Wi-Fi 6</td>
+            <td>802.11ax</td>
+            <td>Improved efficiency in busy networks</td>
+        </tr>
+        <tr>
+            <td>Wi-Fi 6E</td>
+            <td>802.11ax</td>
+            <td>Adds support for the 6 GHz band</td>
+        </tr>
+        <tr>
+            <td>Wi-Fi 7</td>
+            <td>802.11be</td>
+            <td>Includes Multi-Link Operation (MLO)</td>
+        </tr>
+    </table>
+
+    <h2>5. Windows Network Troubleshooting Commands</h2>
+
+    <p>These commands help investigate wireless connections and network problems.</p>
+
+    <table>
+        <tr>
+            <th>Command</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td><code>netsh wlan show interfaces</code></td>
+            <td>Displays current wireless connection information.</td>
+        </tr>
+        <tr>
+            <td><code>netsh wlan show networks mode=bssid</code></td>
+            <td>Displays nearby wireless networks and access-point details.</td>
+        </tr>
+        <tr>
+            <td><code>netsh wlan show drivers</code></td>
+            <td>Displays wireless adapter capabilities.</td>
+        </tr>
+        <tr>
+            <td><code>ipconfig /all</code></td>
+            <td>Displays IP configuration details.</td>
+        </tr>
+        <tr>
+            <td><code>ping 1.1.1.1 -n 10</code></td>
+            <td>Tests connectivity and response times.</td>
+        </tr>
+        <tr>
+            <td><code>nslookup example.com</code></td>
+            <td>Checks DNS name resolution.</td>
+        </tr>
+        <tr>
+            <td><code>tracert 1.1.1.1</code></td>
+            <td>Shows the route towards an external IP address.</td>
+        </tr>
+        <tr>
+            <td><code>netstat -ano</code></td>
+            <td>Displays active connections and process IDs.</td>
+        </tr>
+    </table>
+
+    <h2>6. Wireless Network Security</h2>
+
+    <ul>
+        <li><strong>WEP:</strong> An obsolete and insecure wireless security method.</li>
+        <li><strong>WPA2:</strong> Widely used wireless protection, particularly with AES.</li>
+        <li><strong>WPA3:</strong> A newer wireless security standard.</li>
+        <li><strong>Open Wi-Fi:</strong> Does not provide ordinary Wi-Fi link encryption.</li>
+    </ul>
+
+    <h3>What is an evil twin hotspot?</h3>
+
+    <p>
+        An evil twin is a fake wireless access point that imitates a
+        legitimate network. An attacker may use a familiar network name
+        to encourage people to connect. Users should verify the correct
+        network before connecting.
+    </p>
+
+    <h2>7. Wi-Fi 7 and Multi-Link Operation</h2>
+
+    <p>
+        Wi-Fi 7 uses the IEEE 802.11be standard. Multi-Link Operation
+        (MLO) allows compatible devices to use multiple wireless links.
+        This can help improve performance and reliability, depending
+        on equipment and network conditions.
+    </p>
+
+    <h2>8. AI in Network Troubleshooting</h2>
+
+    <p>
+        Artificial Intelligence can help suggest possible causes of
+        slow Wi-Fi connections by analysing measurements such as
+        latency, signal strength and download speed.
+    </p>
+
+    <p>
+        However, network engineers must check AI recommendations
+        against real measurements and reliable evidence.
+    </p>
+
+    <h2>9. My Learning Reflection</h2>
+
+    <p>
+        In Week 6, I learned how wireless networks use radio frequency
+        signals to communicate. I learned that interference, distance
+        and obstacles can affect Wi-Fi performance. I also practised
+        using Windows commands to investigate network connections.
+        I learned about WPA2, WPA3 and the risks of fake wireless
+        hotspots. Finally, I explored Wi-Fi 7, Multi-Link Operation
+        and how AI can support network troubleshooting.
+    </p>
+
+    <hr>
+
+    <p><a href="index.html">Back to my cybersecurity homepage</a></p>
+
+</main>
+</body>
+</html>
